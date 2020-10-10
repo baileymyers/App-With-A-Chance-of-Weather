@@ -1,0 +1,30 @@
+.search-history {
+    margin-left: 50px;
+    /* padding-top: 100px; */
+    padding-left: 10px;
+    height: 500px;
+    width: max-content;
+    background-color: aliceblue;
+}
+
+.weather-main {
+    background-color: blue;
+    margin-right: 50px;
+    padding-right: 10px;
+}
+
+#search-span {
+    padding: 20px 100px 20px 10px;
+}
+
+.current-weather {
+    width: auto;
+    height: auto;
+    background-color: aqua;
+}
+
+.forecast-weather {
+    width: auto;
+    height: auto;
+    background-color: rgb(255, 0, 242);
+}
