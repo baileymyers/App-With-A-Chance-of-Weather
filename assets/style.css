@@ -28,3 +28,7 @@
     height: auto;
     background-color: rgb(255, 0, 242);
 }
+
+.city {
+    font-size: 25px;
+}

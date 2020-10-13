@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="./assets/style.css">
-    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-    <script src="./assets/script.js"></script>
     <title>App With A Chance of Weather</title>
 </head>
 <body>
@@ -15,7 +13,7 @@
         <a class="navbar-brand" style="color: white;">Weather Dashboard</a>
         <form class="form-inline">
           <input class="form-control mr-sm-2 search-input" type="search">
-          <button class="btn btn-light my-2 my-sm-0 search-btn" type="submit">Search</button>
+          <button class="btn btn-light my-2 my-sm-0 search-btn" id="searchBtn" type="button">Search</button>
         </form>
     </nav>
 
@@ -24,18 +22,19 @@
             <div class="col-4 search-history">
                 <span id="search-span">Search History</span>
                 <div class="btn-group-vertical">
-                <button type="button" class="btn btn-dark">City</button>
+                <button type="button" class="btn btn-dark" id="practice">City</button>
                 <button type="button" class="btn btn-dark">City</button>
                 </div>
             </div>
 
             <div class="col weather-main jumbotron jumbotron-fluid text-wrap">
                 <div class="current-weather container">
-                    <h1 class="display-4 city-date">City-Date</h1>
-                    <p class="lead temp"></p>
-                    <p class="lead humidity"></p>
-                    <p class="lead wind"></p>
-                    <p class="lead uv-index"></p>
+                    <p class="city">City-Date</p>
+                    <img id="wicon" src="" alt="">
+                    <p class="lead">Temperature: <span class="temp"></span></p>
+                    <p class="lead">Humidity: <span class="humidity"></span></p>
+                    <p class="lead">Wind: <span class="wind"></span></p>
+                    <p class="lead">UV Index: <span class="uv-index"></span></p>
                 </div>
                 <div class="forecast-weather">
 
@@ -43,5 +42,9 @@
             </div>
         </div>
     </main>
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="./assets/script.js"></script>
 </body>
+
 </html>
