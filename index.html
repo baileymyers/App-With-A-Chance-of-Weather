@@ -19,25 +19,23 @@
 
     <main>
         <div class="row">
-            <div class="col-4 search-history">
-                <span id="search-span">Search History</span>
-                <div class="btn-group-vertical">
-                <button type="button" class="btn btn-dark" id="practice">City</button>
-                <button type="button" class="btn btn-dark">City</button>
+            <div class="col-4 search-history jumbotron jumbotron-fluid text-wrap">
+                <div class="col-3 list-group history-list">
                 </div>
             </div>
+            
 
             <div class="col weather-main jumbotron jumbotron-fluid text-wrap">
-                <div class="current-weather container">
+                <div class="col current-weather container border border-secondary rounded">
                     <p class="city">City-Date</p>
                     <img id="wicon" src="" alt="">
                     <p class="lead">Temperature: <span class="temp"></span></p>
                     <p class="lead">Humidity: <span class="humidity"></span></p>
                     <p class="lead">Wind: <span class="wind"></span></p>
-                    <p class="lead">UV Index: <span class="uv-index"></span></p>
+                    <p class="lead">UV Index: <span class="uv-index" id="uv-index"></span></p>
                 </div>
-                <div class="forecast-weather">
-
+                <div class="col forecast-weather border border-secondary rounded">
+                    <p>5 Day Forecast</p>
                 </div>
             </div>
         </div>
