@@ -8,7 +8,7 @@ then the search history is still shown
 $("#searchBtn").on("click", function() {
     let location = $(".search-input").val();
     let apiKey = "387132af451fb4380aeaf30be323dfab";
-    let apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + location + "&forecast?q=" + location + "&appid=" + apiKey;
+    let apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + location + "&appid=" + apiKey;
 
     console.log(location);
     console.log(apiUrl);
@@ -28,9 +28,9 @@ $("#searchBtn").on("click", function() {
             let iconUrl= "http://openweathermap.org/img/wn/" + icon + "@2x.png";
             $('#wicon').attr('src', iconUrl);
             $('#wicon').attr('alt', "weather icon");
-            windEl.text(response.wind.speed + "m/s");
-            humidityEl.text(response.main.humidity + "%");
-            tempEl.html(convertKtoF(parseFloat(response.main.temp)) + "&deg;F");
+            windEl.text("Wind: " + response.wind.speed + "m/s");
+            humidityEl.text("Humidity: " + response.main.humidity + "%");
+            tempEl.html("Temperature: " + convertKtoF(parseFloat(response.main.temp)) + "&deg;F");
 
             function convertKtoF(tempInKelvin) {
                 // (360K − 273.15) × 9/5 + 32 = 188.33°F
@@ -39,11 +39,14 @@ $("#searchBtn").on("click", function() {
 
             let historyLocation = response.name;
             console.log(historyLocation);
-            let history = $(".history-list").append("<button>");
-            let historyBtn = history.text(historyLocation);
-            $(historyBtn).addClass("list-group-item list-group-item-action border border-secondary rounded");
+            let historyDiv = $("<div>");
+            let historyBtn = $("<button>").text(historyLocation);
+            $(historyBtn).addClass("list-group-item list-group-item-action border border-secondary rounded-0");
             $(historyBtn).attr("type", "button");
+            $(historyBtn).css("margin-top", "5px");
             $(historyBtn).val(historyLocation);
+            historyDiv.append(historyBtn);
+            $("#search-history-appears-here").prepend(historyDiv);
 
             let latitude = response.coord.lat;
             let longitude = response.coord.lon;
@@ -58,12 +61,16 @@ $("#searchBtn").on("click", function() {
             $.ajax({ url: uvApiUrl, method: "GET" }).then(function (response) {
                 console.log(response);
                 let uviEl = $(".uv-index");
-                uvIndex = uviEl.text(response.value);
+                $(".uv-text").html("UV Index: ");
+                uvIndex = uviEl.text(parseFloat(response.value));
+                uvIndexVal = uviEl.val(parseFloat(response.value));
             });
+
+
         });
 
         let uviElVal = $(".uv-index").val();
-        if (uviElVal >= 0 && uviElVal <= 2) {
+        if (uviElVal <= 2) {
             document.getElementById("uv-index").style.backgroundColor = "green";
             document.getElementById("uv-index").style.color = "white";
             document.getElementById("uv-index").style.padding = "3px 5px";
@@ -77,4 +84,14 @@ $("#searchBtn").on("click", function() {
         } else if (uviElVal >10) {
             document.getElementById("uv-index").style.backgroundColor = "purple";
         }
+
+        let forecastUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + location + "&units=imperial" + "&appid=" + apiKey;
+
+        $.ajax({ url: forecastUrl, method: "GET" }).then(function (response) {
+            console.log(response);
+            let forecastArr = response.list[0];
+            
+            let forecastDate = response.list.dt;
+            console.log(forecastDate);
+        });
 });
