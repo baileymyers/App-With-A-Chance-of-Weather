@@ -58,32 +58,39 @@ $("#searchBtn").on("click", function() {
 
             let uvApiUrl = "http://api.openweathermap.org/data/2.5/uvi?lat=" + latitude + "&lon=" + longitude + "&appid=" + apiKey;
 
+            let uviEl = $(".uv-index").val(0);
+
             $.ajax({ url: uvApiUrl, method: "GET" }).then(function (response) {
                 console.log(response);
-                let uviEl = $(".uv-index");
+                // let uviEl = $(".uv-index");
+                // let uviElValue = $(".uv-index").val();
                 $(".uv-text").html("UV Index: ");
-                uvIndex = uviEl.text(parseFloat(response.value));
-                uvIndexVal = uviEl.val(parseFloat(response.value));
+                uvIndex = uviEl.text(response.value);
+                console.log(response.value);
             });
 
+            console.log(uviEl);
 
         });
 
-        let uviElVal = $(".uv-index").val();
-        if (uviElVal <= 2) {
-            document.getElementById("uv-index").style.backgroundColor = "green";
-            document.getElementById("uv-index").style.color = "white";
-            document.getElementById("uv-index").style.padding = "3px 5px";
-            $("#uv-index").addClass("rounded-lg");
-        } else if (uviElVal >= 3 && uviElVal <= 5) {
-            document.getElementById("uv-index").style.backgroundColor = "yellow";
-        } else if (uviElVal >= 6 && uviElVal <= 7) {
-            document.getElementById("uv-index").style.backgroundColor = "orange";
-        } else if (uviElVal >= 8 && uviElVal <= 10) {
-            document.getElementById("uv-index").style.backgroundColor = "red";
-        } else if (uviElVal >10) {
-            document.getElementById("uv-index").style.backgroundColor = "purple";
-        }
+        // let uviElVal = $(".uv-index").val();
+        // console.log(uviEl);
+        // if (uviElVal <= 2) {
+        //     document.getElementById("uv-index").style.backgroundColor = "green";
+        //     document.getElementById("uv-index").style.color = "white";
+        //     document.getElementById("uv-index").style.padding = "3px 5px";
+        //     // console.log(uviElVal);
+        //     $("#uv-index").addClass("rounded-lg");
+        // } else if (uviElVal >= 3 && uviElVal <= 5) {
+        //     document.getElementById("uv-index").style.backgroundColor = "yellow";
+        // } else if (uviElVal >= 6 && uviElVal <= 7) {
+        //     document.getElementById("uv-index").style.backgroundColor = "orange";
+        // } else if (uviElVal >= 7.01 && uviElVal <= 10) {
+        //     document.getElementById("uv-index").style.backgroundColor = "red";
+        //     // console.log(uviElVal);
+        // } else if (uviElVal >10) {
+        //     document.getElementById("uv-index").style.backgroundColor = "purple";
+        // }
 
         let forecastUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + location + "&units=imperial" + "&appid=" + apiKey;
 
